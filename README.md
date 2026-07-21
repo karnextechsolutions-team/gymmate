@@ -126,3 +126,4 @@ These screens are scaffolded but need their data tables wired up:
 - Heights are stored in **cm**, weights in **kg** internally; the UI converts for display based on `profiles.length_unit` / `weight_unit`.
 - The `(member)`, `(owner)`, `(admin)` folders are **route groups** — the parentheses don't appear in the URL.
 - Service-role key is server-only — never import it into a client component.
+# gymmate
