@@ -5,6 +5,7 @@ import { ScanLine, ChevronRight } from "lucide-react";
 import { TodayWorkoutPlan } from "@/components/ui/TodayWorkoutPlan";
 import { DashboardWaterSection } from "@/components/ui/DashboardWaterSection";
 import { NotificationBell } from "@/components/ui/NotificationBell";
+import { TurnOnNotificationsCard } from "@/components/ui/TurnOnNotificationsCard";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -83,6 +84,9 @@ export default async function DashboardPage() {
 
         <NotificationBell userId={user.id} />
       </div>
+
+      {/* ── Push Notification Enable Card ── */}
+      <TurnOnNotificationsCard userId={user.id} />
 
       {/* ── Attendance Terminal Card ── */}
       <Link

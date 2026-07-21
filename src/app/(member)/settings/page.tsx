@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { registerServiceWorkerAndSubscribe } from "@/lib/pushSubscription";
+import { TurnOnNotificationsCard } from "@/components/ui/TurnOnNotificationsCard";
 import { 
   Settings, 
   Bell, 
@@ -209,66 +210,9 @@ export default function MemberSettingsPage() {
               Notifications & Push
             </h3>
 
+            {userId && <TurnOnNotificationsCard userId={userId} />}
+
             <div className="card p-4 bg-white/[0.02] border border-white/[0.06] rounded-2xl space-y-4">
-              
-              {/* Web Push Notification Registration */}
-              <div className="space-y-3 border-b border-white/[0.04] pb-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400">
-                      <Smartphone size={18} />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-white">Mobile Web Push</h4>
-                      <p className="text-[11px] text-white/40">Background alerts when app is closed</p>
-                    </div>
-                  </div>
-
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                    pushEnabled 
-                      ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
-                      : "bg-white/10 text-white/40 border-white/10"
-                  }`}>
-                    {pushEnabled ? "Active" : "Disabled"}
-                  </span>
-                </div>
-
-                <div className="flex gap-2 pt-1">
-                  <button
-                    onClick={handleEnableWebPush}
-                    disabled={subscribingPush}
-                    className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-bold py-2.5 rounded-xl shadow-glow transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-40"
-                  >
-                    {subscribingPush ? (
-                      <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                    ) : (
-                      <>
-                        <Bell size={13} />
-                        <span>{pushEnabled ? "Re-subscribe Web Push" : "Enable Web Push"}</span>
-                      </>
-                    )}
-                  </button>
-
-                  {pushEnabled && (
-                    <button
-                      onClick={handleSendTestPush}
-                      disabled={sendingPush}
-                      className="bg-white/[0.05] hover:bg-white/10 border border-white/10 text-white/80 hover:text-white text-xs font-semibold px-3 py-2.5 rounded-xl transition flex items-center gap-1.5 cursor-pointer disabled:opacity-40"
-                      title="Send Test Push"
-                    >
-                      {sendingPush ? (
-                        <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      ) : (
-                        <>
-                          <Send size={13} />
-                          <span>Test</span>
-                        </>
-                      )}
-                    </button>
-                  )}
-                </div>
-              </div>
-
               {/* Water Reminder Toggle */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
